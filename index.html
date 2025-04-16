@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom PDF Download</title>
+</head>
+<body>
+  <h2>Download PDF with Custom Name</h2>
+  <button onclick="downloadPDF()">Download as report_final.pdf</button>
+
+  <script>
+    function downloadPDF() {
+      const fileUrl = "https://yourusername.github.io/your-repo/sample.pdf";
+      const fileName = "report_final.pdf";  // or use .docx etc.
+
+      fetch(fileUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = fileName;
+          link.click();
+        })
+        .catch(console.error);
+    }
+  </script>
+</body>
+</html>
